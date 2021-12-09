@@ -3,8 +3,6 @@
 ; This script shows how the CreateDownloadPage support function can be used to
 ; download temporary files while showing the download progress to the user.
 
-# include "ExecNonBlocking.iss"
-# include "Unzip.iss"
 # include "ExtractWizardPage.iss"
 
 [Setup]
@@ -35,6 +33,8 @@ Source: "{tmp}\java\*"; DestDir: "{app}\java"; Flags: external recursesubdirs; E
 [Registry]
 Root: HKCU; Subkey: "Environment"; ValueType:string; ValueName: "EM_CONFIG"; \
     ValueData: "{app}\.emscripten"; Flags: preservestringtype;
+Root: HKCU; Subkey: "Environment"; ValueType:string; ValueName: "EMSDK"; \
+    ValueData: "{app}"; Flags: preservestringtype;
 Root: HKCU; Subkey: "Environment"; ValueType:expandsz; ValueName: "PATH"; \
     ValueData: "{olddata};{app}\upstream\emscripten;{app}\python;{app}\node\node-v14.15.5-win-x64\bin;"; Flags: preservestringtype
 Root: HKCU; Subkey: "Environment"; ValueType:string; ValueName: "EMSDK_NODE"; \

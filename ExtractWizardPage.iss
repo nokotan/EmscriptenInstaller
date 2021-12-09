@@ -1,3 +1,5 @@
+# include "Unzip.iss"
+
 [Code]
 var
   ExtractZipPage: TOutputProgressWizardPage;
