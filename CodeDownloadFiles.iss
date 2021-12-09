@@ -20,8 +20,8 @@ PrivilegesRequired=lowest
 [Languages]
 Name: en; MessagesFile: "compiler:Default.isl"
 Name: ja; MessagesFile: "compiler:Languages/Japanese.isl"
-Name: zh_cn; MessagesFile: "compiler:Languages/Unofficial/ChineseSimplified.isl"
-Name: zh_tw; MessagesFile: "compiler:Languages/Unofficial/ChineseTraditional.isl"
+Name: zh_cn; MessagesFile: "Languages/Unofficial/ChineseSimplified.isl"
+Name: zh_tw; MessagesFile: "Languages/Unofficial/ChineseTraditional.isl"
 Name: kr; MessagesFile: "compiler:Languages/Unofficial/Korean.isl"
 
 [Files]
