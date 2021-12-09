@@ -23,6 +23,7 @@ jobs:
 
   deploy:
     if: ${{ contains(github.ref, 'tags/') }}
+    needs: [ build-installer ]
     runs-on: ubuntu-latest
 
     steps:
