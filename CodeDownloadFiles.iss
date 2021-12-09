@@ -22,7 +22,7 @@ Name: en; MessagesFile: "compiler:Default.isl"
 Name: ja; MessagesFile: "compiler:Languages/Japanese.isl"
 Name: zh_cn; MessagesFile: "Languages/Unofficial/ChineseSimplified.isl"
 Name: zh_tw; MessagesFile: "Languages/Unofficial/ChineseTraditional.isl"
-Name: kr; MessagesFile: "compiler:Languages/Unofficial/Korean.isl"
+Name: kr; MessagesFile: "Languages/Unofficial/Korean.isl"
 
 [Files]
 ; These files will be downloaded
@@ -74,14 +74,18 @@ var
 begin
   if CurPageID = wpReady then begin
     DownloadPage.Clear;
-    //DownloadPage.Add('https://storage.googleapis.com/webassembly/emscripten-releases-builds/win/6465a9acb820207acf7da44661a7de52d0a1ae3c/wasm-binaries.zip', 'emscripten-2.0.22.zip', '');
-    //DownloadPage.Add('https://storage.googleapis.com/webassembly/emscripten-releases-builds/deps/node-v14.15.5-win-x64.zip', 'emscripten-node.zip', '');
-    //DownloadPage.Add('https://storage.googleapis.com/webassembly/emscripten-releases-builds/deps/python-3.9.2-1-embed-amd64+pywin32.zip', 'emscripten-python.zip', '');
-    //DownloadPage.Add('https://storage.googleapis.com/webassembly/emscripten-releases-builds/deps/portable_jre_8_update_152_64bit.zip', 'emscripten-java.zip', '');
+    DownloadPage.Add('https://storage.googleapis.com/webassembly/emscripten-releases-builds/win/6465a9acb820207acf7da44661a7de52d0a1ae3c/wasm-binaries.zip', 'emscripten-2.0.22.zip', '');
+    DownloadPage.Add('https://storage.googleapis.com/webassembly/emscripten-releases-builds/deps/node-v14.15.5-win-x64.zip', 'emscripten-node.zip', '');
+    DownloadPage.Add('https://storage.googleapis.com/webassembly/emscripten-releases-builds/deps/python-3.9.2-1-embed-amd64+pywin32.zip', 'emscripten-python.zip', '');
+    DownloadPage.Add('https://storage.googleapis.com/webassembly/emscripten-releases-builds/deps/portable_jre_8_update_152_64bit.zip', 'emscripten-java.zip', '');
+    
+    {
     DownloadPage.Add('http://localhost:8080/emscripten-2.0.22.zip', 'emscripten-2.0.22.zip', '');
     DownloadPage.Add('http://localhost:8080/emscripten-node.zip', 'emscripten-node.zip', '');
     DownloadPage.Add('http://localhost:8080/emscripten-python.zip', 'emscripten-python.zip', '');
     DownloadPage.Add('http://localhost:8080/emscripten-java.zip', 'emscripten-java.zip', '');
+    }
+
     DownloadPage.Show;
     try
       try
