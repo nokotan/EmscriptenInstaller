@@ -13,7 +13,7 @@ jobs:
       - name: Create Installer
         run: |
           mkdir Output
-          iscc /O"Output" "./${{ matrix.config.script }}"
+          iscc /O"Output" "./CodeDownloadFiles.iss"
           
       - name: Save Bundles
         uses: actions/upload-artifact@v2
