@@ -1,0 +1,53 @@
+name: Automated Installer Build
+
+on: [ push ]
+
+jobs:
+  build-installer:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create Installer
+        run: |
+          mkdir Output
+          iscc /O"Output" "./${{ matrix.config.script }}"
+          
+      - name: Save Bundles
+        uses: actions/upload-artifact@v2
+        with:
+          name: Emscripten-Installer
+          path: Output/Emscripten.exe
+
+  deploy:
+    if: ${{ contains(github.ref, 'tags/') }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create release
+        id: create-release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+
+      - name: Restore Bundles
+        uses: actions/download-artifact@v2
+        with:
+          name: Emscripten-Installer
+          path: .
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-release.outputs.upload_url }}
+          asset_path: Emscripten.exe
+          asset_name: Emscripten.exe
+          asset_content_type: application/octet
