@@ -16,9 +16,8 @@ jobs:
           iscc /O"Output" "./CodeDownloadFiles.iss"
 
       - name: Test Installer
-        working-directory: Output
         run: |
-          Emscripten.exe /SILENT /SUPPRESSMSGBOXES
+          Output/Emscripten.exe /SILENT /SUPPRESSMSGBOXES
  
       - name: Save Bundles
         uses: actions/upload-artifact@v2
