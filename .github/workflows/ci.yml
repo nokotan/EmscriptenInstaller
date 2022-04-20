@@ -17,7 +17,9 @@ jobs:
 
       - name: Test Installer
         run: |
-          Output/Emscripten.exe /SILENT /SUPPRESSMSGBOXES
+          cd Output
+          Emscripten.exe /SILENT /SUPPRESSMSGBOXES /LOG="InstallLog.Log"
+          cat InstallLog.Log
  
       - name: Save Bundles
         uses: actions/upload-artifact@v2
