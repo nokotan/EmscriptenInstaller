@@ -18,6 +18,7 @@ jobs:
       - name: Test Installer
         run: |
           Output/Emscripten.exe /SILENT /SUPPRESSMSGBOXES /LOG="InstallLog.Log"
+          Wait-Process -Name Emscripten
           cat Output/InstallLog.Log
  
       - name: Save Bundles
