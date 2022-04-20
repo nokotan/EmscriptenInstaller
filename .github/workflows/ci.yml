@@ -16,10 +16,11 @@ jobs:
           iscc /O"Output" "./CodeDownloadFiles.iss"
 
       - name: Test Installer
+        shell: C:\Program Files\PowerShell\7\pwsh.EXE -command "Output '{0}'"
         run: |
-          Output/Emscripten.exe /SILENT /SUPPRESSMSGBOXES /LOG="InstallLog.Log"
+          Emscripten.exe /SILENT /SUPPRESSMSGBOXES /LOG="InstallLog.Log"
           Wait-Process -Name Emscripten
-          cat Output/InstallLog.Log
+          cat InstallLog.Log
  
       - name: Save Bundles
         uses: actions/upload-artifact@v2
