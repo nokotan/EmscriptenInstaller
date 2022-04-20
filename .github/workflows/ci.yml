@@ -16,9 +16,8 @@ jobs:
           iscc /O"Output" "./CodeDownloadFiles.iss"
 
       - name: Test Installer
-        shell: C:\Program Files\PowerShell\7\pwsh.EXE -command "Output '{0}'"
         run: |
-          Emscripten.exe /SILENT /SUPPRESSMSGBOXES /LOG="InstallLog.Log"
+          Output/Emscripten.exe /SILENT /SUPPRESSMSGBOXES /LOG="InstallLog.Log"
           Wait-Process -Name Emscripten
           cat InstallLog.Log
  
