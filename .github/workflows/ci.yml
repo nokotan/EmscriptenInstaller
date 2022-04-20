@@ -15,16 +15,13 @@ jobs:
           mkdir Output
           iscc /O"Output" "./CodeDownloadFiles.iss"
 
-      - name: Test Installer
+      - name: Test & Validate Installer
         run: |
           Output/Emscripten.exe /SILENT /SUPPRESSMSGBOXES /LOG="InstallLog.Log"
           Wait-Process -Name Emscripten
           cat InstallLog.Log
-
-      - name: Validate Installation
-        run: |
           emcc --version
- 
+
       - name: Save Bundles
         uses: actions/upload-artifact@v2
         with:
