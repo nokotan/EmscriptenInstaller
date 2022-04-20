@@ -17,7 +17,7 @@ jobs:
 
       - name: Test Installer
         run: |
-          cd Output
+          Set-Location -Path Output
           Emscripten.exe /SILENT /SUPPRESSMSGBOXES /LOG="InstallLog.Log"
           cat InstallLog.Log
  
