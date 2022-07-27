@@ -40,6 +40,8 @@ jobs:
 
       - name: Execute Downloader
         run: |
+          mkdir zips
+          mkdir tmp
           chmod +x ./DownloadAssets.sh
           ./DownloadAssets.sh
 
