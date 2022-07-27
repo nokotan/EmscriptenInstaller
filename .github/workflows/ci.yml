@@ -31,29 +31,8 @@ jobs:
           name: Emscripten-Installer
           path: Output/Emscripten.exe
 
-  prepare-offline-installer:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Execute Downloader
-        run: |
-          mkdir zips
-          mkdir tmp
-          chmod +x ./DownloadAssets.sh
-          ./DownloadAssets.sh
-
-      # - name: Save Assets
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: Emscripten-Assets
-      #     path: tmp/**/*
-
   build-offline-installer:
     runs-on: windows-latest
-    # needs: [ prepare-offline-installer ]
     
     steps:
       - name: Checkout code
@@ -64,12 +43,6 @@ jobs:
           mkdir zips
           mkdir tmp
           bash ./DownloadAssets.sh
-      
-      # - name: Restore Assets
-      #   uses: actions/download-artifact@v2
-      #   with:
-      #     name: Emscripten-Assets
-      #     path: .
 
       - name: Create Installer
         run: |
