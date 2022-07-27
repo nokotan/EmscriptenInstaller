@@ -78,13 +78,6 @@ begin
     DownloadPage.Add('https://storage.googleapis.com/webassembly/emscripten-releases-builds/deps/node-v14.15.5-win-x64.zip', 'emscripten-node.zip', '');
     DownloadPage.Add('https://storage.googleapis.com/webassembly/emscripten-releases-builds/deps/python-3.9.2-1-embed-amd64+pywin32.zip', 'emscripten-python.zip', '');
     DownloadPage.Add('https://storage.googleapis.com/webassembly/emscripten-releases-builds/deps/portable_jre_8_update_152_64bit.zip', 'emscripten-java.zip', '');
-    
-    {
-    DownloadPage.Add('http://localhost:8080/emscripten-3.1.8.zip', 'emscripten-3.1.8.zip', '');
-    DownloadPage.Add('http://localhost:8080/emscripten-node.zip', 'emscripten-node.zip', '');
-    DownloadPage.Add('http://localhost:8080/emscripten-python.zip', 'emscripten-python.zip', '');
-    DownloadPage.Add('http://localhost:8080/emscripten-java.zip', 'emscripten-java.zip', '');
-    }
 
     DownloadPage.Show;
     try

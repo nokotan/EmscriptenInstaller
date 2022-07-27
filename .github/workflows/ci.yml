@@ -31,9 +31,68 @@ jobs:
           name: Emscripten-Installer
           path: Output/Emscripten.exe
 
+  prepare-offline-installer:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Execute Downloader
+        run: |
+          chmod +x ./DownloadAssets.sh
+          ./DownloadAssets.sh
+
+      - name: Save Assets
+        uses: actions/upload-artifact@v2
+        with:
+          name: Emscripten-Assets
+          path: tmp/**/*
+
+  build-offline-installer:
+    runs-on: windows-latest
+    needs: [ prepare-offline-installer ]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Restore Assets
+        uses: actions/download-artifact@v2
+        with:
+          name: Emscripten-Assets
+          path: .
+
+      - name: Create Installer
+        run: |
+          mkdir Output
+          iscc /O"Output" "./OfflineInstaller.iss"
+
+      - name: Test Installer
+        run: |
+          Output/EmscriptenOffline.exe /SILENT /SUPPRESSMSGBOXES /LOG="InstallLog.Log"
+          Wait-Process -Name EmscriptenOffline
+          cat InstallLog.Log
+
+      - name: Test Installer
+        run: |
+          Output/EmscriptenOffline.exe /SILENT /SUPPRESSMSGBOXES /LOG="InstallLog.Log"
+          Wait-Process -Name EmscriptenOffline
+          cat InstallLog.Log
+
+      # - name: Validate Installation
+      #   run: |
+      #     emcc --version
+ 
+      - name: Save Bundles
+        uses: actions/upload-artifact@v2
+        with:
+          name: Emscripten-Offline-Installer
+          path: Output/EmscriptenOffline.exe
+
   deploy:
     if: ${{ contains(github.ref, 'tags/') }}
-    needs: [ build-installer ]
+    needs: [ build-installer, build-offline-installer ]
     runs-on: ubuntu-latest
 
     steps:
@@ -52,6 +111,12 @@ jobs:
           name: Emscripten-Installer
           path: .
 
+      - name: Restore Bundles (Offline)
+        uses: actions/download-artifact@v2
+        with:
+          name: Emscripten-Offline-Installer
+          path: .
+
       - name: Upload Release Asset
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
@@ -61,4 +126,15 @@ jobs:
           upload_url: ${{ steps.create-release.outputs.upload_url }}
           asset_path: Emscripten.exe
           asset_name: Emscripten.exe
+          asset_content_type: application/octet
+
+      - name: Upload Release Asset (Offline)
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-release.outputs.upload_url }}
+          asset_path: EmscriptenOffline.exe
+          asset_name: EmscriptenOffline.exe
           asset_content_type: application/octet
