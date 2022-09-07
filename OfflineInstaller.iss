@@ -1,6 +1,6 @@
 [Setup]
 AppName=EmscriptenOffline
-AppVersion=3.1.8
+AppVersion=3.1.20
 WizardStyle=modern
 DefaultDirName={autopf}\EmscriptenOffline
 DefaultGroupName=EmscriptenOffline

@@ -7,7 +7,7 @@
 
 [Setup]
 AppName=Emscripten
-AppVersion=3.1.8
+AppVersion=3.1.20
 WizardStyle=modern
 DefaultDirName={autopf}\Emscripten
 DefaultGroupName=Emscripten
@@ -74,8 +74,8 @@ var
 begin
   if CurPageID = wpReady then begin
     DownloadPage.Clear;
-    DownloadPage.Add('https://storage.googleapis.com/webassembly/emscripten-releases-builds/win/8c9e0a76ebed2c5e88a718d43e8b62452def3771/wasm-binaries.zip', 'emscripten-3.1.8.zip', '');
-    DownloadPage.Add('https://storage.googleapis.com/webassembly/emscripten-releases-builds/deps/node-v14.15.5-win-x64.zip', 'emscripten-node.zip', '');
+    DownloadPage.Add('https://storage.googleapis.com/webassembly/emscripten-releases-builds/win/d92c8639f406582d70a5dde27855f74ecf602f45/wasm-binaries.zip', 'emscripten-3.1.20.zip', '');
+    DownloadPage.Add('https://storage.googleapis.com/webassembly/emscripten-releases-builds/deps/node-v14.18.2-win-x64.zip', 'emscripten-node.zip', '');
     DownloadPage.Add('https://storage.googleapis.com/webassembly/emscripten-releases-builds/deps/python-3.9.2-1-embed-amd64+pywin32.zip', 'emscripten-python.zip', '');
     DownloadPage.Add('https://storage.googleapis.com/webassembly/emscripten-releases-builds/deps/portable_jre_8_update_152_64bit.zip', 'emscripten-java.zip', '');
 
@@ -97,7 +97,7 @@ begin
 
     // ExtractTemporaryFile(ExpandConstant('miniunz.exe'));
     ExtractZipPage_Clear;
-    ExtractZipPage_Add(ExpandConstant('{tmp}\emscripten-3.1.8.zip'), ExpandConstant('{tmp}\emscripten'));
+    ExtractZipPage_Add(ExpandConstant('{tmp}\emscripten-3.1.20.zip'), ExpandConstant('{tmp}\emscripten'));
     ExtractZipPage_Add(ExpandConstant('{tmp}\emscripten-node.zip'), ExpandConstant('{tmp}\node'));
     ExtractZipPage_Add(ExpandConstant('{tmp}\emscripten-python.zip'), ExpandConstant('{tmp}\python'));
     ExtractZipPage_Add(ExpandConstant('{tmp}\emscripten-java.zip'), ExpandConstant('{tmp}\java')); 
