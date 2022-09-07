@@ -55,12 +55,6 @@ jobs:
           Wait-Process -Name EmscriptenOffline
           cat InstallLog.Log
 
-      - name: Test Installer
-        run: |
-          Output/EmscriptenOffline.exe /SILENT /SUPPRESSMSGBOXES /LOG="InstallLog.Log"
-          Wait-Process -Name EmscriptenOffline
-          cat InstallLog.Log
-
       # - name: Validate Installation
       #   run: |
       #     emcc --version
