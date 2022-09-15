@@ -1,6 +1,6 @@
 import os
 emsdk_path = os.path.dirname(os.environ.get('EM_CONFIG')).replace('\\', '/')
-NODE_JS = emsdk_path + '/node/node-v14.15.5-win-x64/bin/node.exe'
+NODE_JS = emsdk_path + '/node/node-v14.18.2-win-x64/bin/node.exe'
 PYTHON = emsdk_path + '/python/python.exe'
 JAVA = emsdk_path + '/java/java64/bin/java.exe'
 LLVM_ROOT = emsdk_path + '/upstream/bin'

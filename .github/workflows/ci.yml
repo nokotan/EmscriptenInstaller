@@ -20,10 +20,12 @@ jobs:
           Output/Emscripten.exe /SILENT /SUPPRESSMSGBOXES /LOG="InstallLog.Log"
           Wait-Process -Name Emscripten
           cat InstallLog.Log
+          echo %PATH% >> %GITHUB_ENV%
 
-      # - name: Validate Installation
-      #   run: |
-      #     emcc --version
+      - name: Validate Installation
+        run: |
+          emcc --version
+          emcc Test/Main.cpp
  
       - name: Save Bundles
         uses: actions/upload-artifact@v2

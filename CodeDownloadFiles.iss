@@ -36,9 +36,9 @@ Root: HKCU; Subkey: "Environment"; ValueType:string; ValueName: "EM_CONFIG"; \
 Root: HKCU; Subkey: "Environment"; ValueType:string; ValueName: "EMSDK"; \
     ValueData: "{app}"; Flags: preservestringtype;
 Root: HKCU; Subkey: "Environment"; ValueType:expandsz; ValueName: "PATH"; \
-    ValueData: "{olddata};{app}\upstream\emscripten;{app}\python;{app}\node\node-v14.15.5-win-x64\bin;"; Flags: preservestringtype
+    ValueData: "{olddata};{app}\upstream\emscripten;{app}\python;{app}\node\node-v14.18.2-win-x64\bin;"; Flags: preservestringtype
 Root: HKCU; Subkey: "Environment"; ValueType:string; ValueName: "EMSDK_NODE"; \
-    ValueData: "{app}\node\node-v14.15.5-win-x64\bin\node.exe"; Flags: preservestringtype;
+    ValueData: "{app}\node\node-v14.18.2-win-x64\bin\node.exe"; Flags: preservestringtype;
 Root: HKCU; Subkey: "Environment"; ValueType:string; ValueName: "EMSDK_PYTHON"; \
     ValueData: "{app}\python\python.exe"; Flags: preservestringtype;
 Root: HKCU; Subkey: "Environment"; ValueType:string; ValueName: "PYTHONUTF8"; \
