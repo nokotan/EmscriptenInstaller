@@ -20,7 +20,7 @@ jobs:
           Output/Emscripten.exe /SILENT /SUPPRESSMSGBOXES /LOG="InstallLog.Log"
           Wait-Process -Name Emscripten
           cat InstallLog.Log
-          echo $Env:PATH >> $Env:GITHUB_ENV
+          echo "$Env:PATH<<EOF" >> $Env:GITHUB_ENV
 
       - name: Validate Installation
         run: |
@@ -56,7 +56,7 @@ jobs:
           Output/EmscriptenOffline.exe /SILENT /SUPPRESSMSGBOXES /LOG="InstallLog.Log"
           Wait-Process -Name EmscriptenOffline
           cat InstallLog.Log
-          echo $Env:PATH >> $Env:GITHUB_ENV
+          echo "$Env:PATH<<EOF" >> $Env:GITHUB_ENV
 
       - name: Validate Installation
         run: |
