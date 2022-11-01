@@ -7,6 +7,8 @@ DefaultGroupName=EmscriptenOffline
 OutputDir=userdocs:Inno Setup Examples Output
 OutputBaseFilename=EmscriptenOffline
 PrivilegesRequired=lowest
+DisableDirPage=no
+DisableReadyPage=no
 
 [Languages]
 Name: en; MessagesFile: "compiler:Default.isl"
