@@ -14,8 +14,8 @@ DefaultGroupName=Emscripten
 OutputDir=userdocs:Inno Setup Examples Output
 OutputBaseFilename=Emscripten
 PrivilegesRequired=lowest
-DisableDirPage=no
-DisableReadyPage=no
+DisableDirPage=yes
+DisableReadyPage=yes
 
 [Languages]
 Name: en; MessagesFile: "compiler:Default.isl"
