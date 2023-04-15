@@ -97,14 +97,14 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: ${{ contains(github.ref_name, 'master') }}
-          tags: nokotan/emscripten-compiler:latest
+          tags: nokotan/emscripten-windows:latest
 
       - name: Build Compiler (Tagged)
         if: ${{ contains(github.ref, 'tags/') }}
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: nokotan/emscripten-compiler:${{ github.ref_name }}
+          tags: nokotan/emscripten-windows:${{ github.ref_name }}
 
   deploy:
     if: ${{ contains(github.ref, 'tags/') }}
