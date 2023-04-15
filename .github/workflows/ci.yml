@@ -90,7 +90,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build Compiler (Latest)
-        if: ${{ !contains(github.ref, 'tags/') && contains(github.ref_name, 'master')}}
+        if: ${{ !contains(github.ref, 'tags/') }}
         run: |
           docker build . --file Dockerfile --tag nokotan/emscripten-windows:latest
           docker image push nokotan/emscripten-windows:latest
