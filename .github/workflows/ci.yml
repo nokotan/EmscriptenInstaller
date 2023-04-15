@@ -78,6 +78,7 @@ jobs:
 
   build-dockerimage:
     runs-on: windows-latest
+    needs: [ build-offline-installer ]
 
     steps:
       - name: Checkout code
@@ -89,13 +90,19 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build Compiler (Latest)
+      - name: Restore Bundles (Offline)
+        uses: actions/download-artifact@v2
+        with:
+          name: Emscripten-Offline-Installer
+          path: .
+
+      - name: Build Image (Latest)
         if: ${{ !contains(github.ref, 'tags/') }}
         run: |
           docker build . --file Dockerfile --tag nokotan/emscripten-windows:latest
           docker image push nokotan/emscripten-windows:latest
 
-      - name: Build Compiler (Tagged)
+      - name: Build Image (Tagged)
         if: ${{ contains(github.ref, 'tags/') }}
         run: |
           docker build . --file Dockerfile --tag nokotan/emscripten-windows:${{ github.ref_name }}

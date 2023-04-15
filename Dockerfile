@@ -23,11 +23,12 @@ RUN `
     # Cleanup
     && del /q vs_buildtools.exe
 
+COPY EmscriptenOffline.exe .
+
 RUN `
-    curl -SL --output Emscripten.exe https://github.com/nokotan/EmscriptenInstaller/releases/download/v0.1.2/EmscriptenOffline.exe `
-    && Emscripten.exe /SILENT /SUPPRESSMSGBOXES `
-    && del /q Emscripten.exe
+    EmscriptenOffline.exe /SILENT /SUPPRESSMSGBOXES `
+    && del /q EmscriptenOffline.exe
 
 # Define the entry point for the docker container.
 # This entry point starts the developer command prompt and launches the PowerShell shell.
-ENTRYPOINT ["\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\BuildTools\\Common7\\Tools\\VsDevCmd.bat\"", "&&", "powershell.exe", "-NoLogo", "-ExecutionPolicy", "Bypass"]
+ENTRYPOINT ["\"C:\\Program Files\\Microsoft Visual Studio\\2022\\BuildTools\\Common7\\Tools\\VsDevCmd.bat\"", "&&", "powershell.exe", "-NoLogo", "-ExecutionPolicy", "Bypass"]
