@@ -76,6 +76,33 @@ jobs:
           name: Emscripten-Offline-Installer
           path: src/Output/EmscriptenOffline.exe
 
+  build-dockerimage:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build Compiler (Latest)
+        if: ${{ !contains(github.ref, 'tags/') }}
+        uses: docker/build-push-action@v2
+        with:
+          push: ${{ contains(github.ref_name, 'master') }}
+          tags: nokotan/emscripten-compiler:latest
+
+      - name: Build Compiler (Tagged)
+        if: ${{ contains(github.ref, 'tags/') }}
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: nokotan/emscripten-compiler:${{ github.ref_name }}
+
   deploy:
     if: ${{ contains(github.ref, 'tags/') }}
     needs: [ build-installer, build-offline-installer ]
