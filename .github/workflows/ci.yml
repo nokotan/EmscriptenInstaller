@@ -89,22 +89,17 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-
       - name: Build Compiler (Latest)
-        if: ${{ !contains(github.ref, 'tags/') }}
-        uses: docker/build-push-action@v2
-        with:
-          push: ${{ contains(github.ref_name, 'master') }}
-          tags: nokotan/emscripten-windows:latest
+        if: ${{ !contains(github.ref, 'tags/') && contains(github.ref_name, 'master')}}
+        run: |
+          docker build . --file Dockerfile --tag nokotan/emscripten-windows:latest
+          docker image push nokotan/emscripten-windows:latest
 
       - name: Build Compiler (Tagged)
         if: ${{ contains(github.ref, 'tags/') }}
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          tags: nokotan/emscripten-windows:${{ github.ref_name }}
+        run: |
+          docker build . --file Dockerfile --tag nokotan/emscripten-windows:${{ github.ref_name }}
+          docker image push nokotan/emscripten-windows:${{ github.ref_name }}
 
   deploy:
     if: ${{ contains(github.ref, 'tags/') }}
