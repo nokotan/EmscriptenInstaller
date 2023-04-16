@@ -15,7 +15,7 @@ RUN `
         --installPath "%ProgramFiles%\Microsoft Visual Studio\2022\BuildTools" `
         --add Microsoft.VisualStudio.Component.VC.CoreIde `
         --add Microsoft.VisualStudio.Component.VC.Redist.14.Latest `
-        --add Microsoft.VisualStudio.Component.Windows10SDK `
+        --add Microsoft.VisualStudio.Component.Windows11SDK.22000 `
         --add Microsoft.VisualStudio.Component.VC.CMake.Project `
         --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 `
         || IF "%ERRORLEVEL%"=="3010" EXIT 0) `
