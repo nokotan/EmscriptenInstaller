@@ -13,11 +13,16 @@ RUN `
     # Install Build Tools with the Microsoft.VisualStudio.Workload.AzureBuildTools workload, excluding workloads and components with known issues.
     && (start /w vs_buildtools.exe --quiet --wait --norestart --nocache `
         --installPath "%ProgramFiles%\Microsoft Visual Studio\2022\BuildTools" `
+        --add Microsoft.Component.MSBuild `
+        --add Microsoft.VisualStudio.Component.Roslyn.Compiler `
+        --add Microsoft.VisualStudio.Component.TextTemplating `
+        --add Microsoft.VisualStudio.Component.VC.CoreBuildTools `
         --add Microsoft.VisualStudio.Component.VC.CoreIde `
         --add Microsoft.VisualStudio.Component.VC.Redist.14.Latest `
-        --add Microsoft.VisualStudio.Component.Windows11SDK.22000 `
+        --add Microsoft.VisualStudio.Component.Windows10SDK `
+        --add Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Core `
         --add Microsoft.VisualStudio.Component.VC.CMake.Project `
-        --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 `
+        --add Microsoft.VisualStudio.Component.Windows11SDK.22000 `
         || IF "%ERRORLEVEL%"=="3010" EXIT 0) `
     `
     # Cleanup
