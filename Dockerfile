@@ -14,9 +14,9 @@ RUN `
     && (start /w vs_buildtools.exe --quiet --wait --norestart --nocache `
         --installPath "%ProgramFiles%\Microsoft Visual Studio\2022\BuildTools" `
         --add Microsoft.VisualStudio.Workload.VCTools `
-        --remove Microsoft.VisualStudio.Component.TestTools.BuildTools `
-        --remove Microsoft.VisualStudio.Component.VC.ASAN `
-        --remove Microsoft.VisualStudio.Component.VC.Tools.x86.x64 `
+        --add Microsoft.VisualStudio.Workload.VCTools `
+        --add Microsoft.VisualStudio.Component.VC.CMake.Project `
+        --add Microsoft.VisualStudio.Component.Windows11SDK.22000 `
         || IF "%ERRORLEVEL%"=="3010" EXIT 0) `
     `
     # Cleanup
